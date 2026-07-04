@@ -1,0 +1,17 @@
+{
+  "_comment": "کتابخانه سبک‌های بصری",
+  "items": [
+    { "id": "luxury", "label_fa": "لوکس / پریمیوم", "prompt": "luxury premium commercial aesthetic, rich materials, refined elegance, high-end brand campaign quality" },
+    { "id": "cinematic", "label_fa": "سینمایی", "prompt": "cinematic film look, anamorphic feel, film grain, professional color grading, movie-quality production" },
+    { "id": "realistic", "label_fa": "رئال و طبیعی", "prompt": "hyper-realistic natural photography, true-to-life colors, authentic unretouched feel" },
+    { "id": "ugc", "label_fa": "UGC (محتوای کاربری واقعی)", "prompt": "authentic UGC smartphone-shot aesthetic, casual real-person content, iPhone front camera look, believable everyday setting, NOT polished or commercial" },
+    { "id": "fashion", "label_fa": "فشن / ادیتوریال", "prompt": "high-fashion editorial style, bold confident poses, magazine cover quality" },
+    { "id": "automotive", "label_fa": "اتومبیلی / موتورسواری", "prompt": "professional automotive commercial photography, glossy reflections on metal and paint, dynamic powerful stance" },
+    { "id": "minimal", "label_fa": "مینیمال", "prompt": "minimalist composition, generous negative space, clean geometry, single focal subject" },
+    { "id": "dark-commercial", "label_fa": "تبلیغاتی تیره", "prompt": "dark premium commercial style, black and gold palette, dramatic spotlighting, mysterious luxury mood" },
+    { "id": "lifestyle", "label_fa": "لایف‌استایل", "prompt": "warm lifestyle photography, candid natural moments, aspirational everyday living" },
+    { "id": "vibrant-social", "label_fa": "پرانرژی برای شبکه اجتماعی", "prompt": "vibrant saturated colors, high energy, scroll-stopping social media aesthetic, bold and punchy" },
+    { "id": "clean-catalog", "label_fa": "کاتالوگ تمیز", "prompt": "clean e-commerce catalog photography, accurate colors, even lighting, no distractions" },
+    { "id": "vintage-film", "label_fa": "فیلم قدیمی / نوستالژیک", "prompt": "vintage 35mm film photography, kodak portra tones, nostalgic warm grain" }
+  ]
+}

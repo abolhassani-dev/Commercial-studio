@@ -1,0 +1,13 @@
+{
+  "_comment": "پلتفرم‌های خروجی و مشخصات فنی هرکدام",
+  "items": [
+    { "id": "instagram-reel", "label_fa": "ریلز اینستاگرام", "aspect_ratio": "9:16", "type": "video", "max_duration_s": 90, "recommended_duration_s": 15, "notes": "سه ثانیه اول باید قلاب (hook) قوی داشته باشد" },
+    { "id": "instagram-story", "label_fa": "استوری اینستاگرام", "aspect_ratio": "9:16", "type": "video", "max_duration_s": 60, "recommended_duration_s": 10, "notes": "CTA به صورت سوایپ/لینک" },
+    { "id": "instagram-post", "label_fa": "پست اینستاگرام (عکس)", "aspect_ratio": "4:5", "type": "image", "notes": "نسبت ۴:۵ بیشترین فضای فید را می‌گیرد" },
+    { "id": "instagram-square", "label_fa": "پست مربعی", "aspect_ratio": "1:1", "type": "image" },
+    { "id": "youtube-shorts", "label_fa": "یوتیوب شورتس", "aspect_ratio": "9:16", "type": "video", "max_duration_s": 60, "recommended_duration_s": 30 },
+    { "id": "youtube", "label_fa": "ویدیو یوتیوب / آپارات", "aspect_ratio": "16:9", "type": "video", "recommended_duration_s": 60 },
+    { "id": "website-banner", "label_fa": "بنر وب‌سایت", "aspect_ratio": "16:9", "type": "image" },
+    { "id": "billboard", "label_fa": "بیلبورد / چاپ", "aspect_ratio": "16:9", "type": "image", "notes": "خروجی با بالاترین رزولوشن + آپ‌اسکیل" }
+  ]
+}

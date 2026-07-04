@@ -1,0 +1,86 @@
+{
+  "_comment": "Model Router — نگاشت هر وظیفه به مدل (بر اساس تحقیق ژوئیه ۲۰۲۶). برای تعویض مدل فقط endpoint را عوض کن؛ هیچ کد دیگری تغییر نمی‌کند. شناسه دقیق هر مدل را از fal.ai/models کپی کن.",
+  "_alternatives": {
+    "image": "جایگزین‌ها: fal-ai/bytedance/seedream (ارزان و فوق‌واقعی برای محصول)، fal-ai/flux-2-pro (وفاداری بالا به بریف)، fal-ai/nano-banana-pro (بهترین درک پرامپت)",
+    "video": "جایگزین‌ها: Kling 3.0 (چندصحنه‌ای)، Seedance 2.0 (رفرنس کاراکتر + لب‌خوانی چندزبانه)، Wan 2.6 (ارزان)، LTX-2.3 (خیلی ارزان)",
+    "tts": "جایگزین: MiniMax Speech 2.5/2.6 HD روی fal — فارسی + کلون صدا با ۱۰ ثانیه نمونه، ~یک‌سوم قیمت ElevenLabs",
+    "lipsync": "جایگزین‌ها: fal-ai/sync-lipsync/v2 (دوبله ویدیو موجود)، Kling Avatar v2 (ارزان‌تر)، LatentSync (تقریباً مجانی برای حجم بالا)"
+  },
+  "tasks": {
+    "image": {
+      "provider": "fal",
+      "endpoint": "fal-ai/flux-pro/v1.1-ultra",
+      "label": "تصویر تبلیغاتی بدون شخص",
+      "params": { "num_images": 1, "output_format": "jpeg", "safety_tolerance": "2" }
+    },
+    "image-identity": {
+      "provider": "fal",
+      "endpoint": "fal-ai/nano-banana-pro",
+      "label": "تصویر با حفظ هویت شخص (تا ۱۴ عکس مرجع، قفل هویت)",
+      "params": { "num_images": 1, "output_format": "jpeg" },
+      "notes": "عکس‌های مرجع در image_urls می‌روند. برای ثبات ۱۰۰ درصدی در تولید انبوه، LoRA آموزش بده (train-lora) — بعد از آن مسیر image-identity-lora خودکار فعال می‌شود."
+    },
+    "image-identity-lora": {
+      "provider": "fal",
+      "endpoint": "fal-ai/flux-lora",
+      "label": "تصویر با LoRA اختصاصی شخص (قوی‌ترین حفظ چهره و بدن)",
+      "params": { "num_images": 1, "output_format": "jpeg" },
+      "notes": "ارتقا: fal-ai/flux-2/lora وقتی LoRA با flux-2-trainer آموزش دیده باشد"
+    },
+    "image-edit": {
+      "provider": "fal",
+      "endpoint": "fal-ai/nano-banana-pro/edit",
+      "label": "جای‌گذاری محصول واقعی در صحنه جدید بدون تغییر محصول",
+      "params": { "num_images": 1, "output_format": "jpeg" },
+      "notes": "جایگزین ارزان: Seedream 4.5 Edit (~$0.04). برای لیبل/متن ریز محصول، لیبل واقعی را در فتوشاپ/فتوروم کامپوزیت کن."
+    },
+    "video": {
+      "provider": "fal",
+      "endpoint": "fal-ai/kling-video/v2.5-turbo/pro/image-to-video",
+      "label": "تصویر به ویدیو (ریلز و تیزر)",
+      "params": { "duration": "5", "cfg_scale": 0.5 },
+      "notes": "ارتقا: Kling 3.0 / O3 برای چندصحنه‌ای با صدای داخلی — شناسه دقیق را از fal.ai/models بردار"
+    },
+    "video-cinematic": {
+      "provider": "fal",
+      "endpoint": "fal-ai/veo3.1",
+      "label": "ویدیو سینمایی درجه یک با صدای داخلی (گران‌تر)",
+      "params": { "resolution": "1080p", "generate_audio": true }
+    },
+    "video-identity": {
+      "provider": "fal",
+      "endpoint": "fal-ai/veo3.1/reference-to-video",
+      "label": "ویدیو با رفرنس کاراکتر (Veo 3.1 Ingredients — تا ۳ عکس مرجع)",
+      "params": { "resolution": "1080p", "generate_audio": true },
+      "notes": "جایگزین: Seedance 2.0 reference-to-video یا Kling 3.0 Elements (تا ۴ رفرنس)"
+    },
+    "lipsync": {
+      "provider": "fal",
+      "endpoint": "fal-ai/bytedance/omnihuman",
+      "label": "عکس + صدای فارسی → ویدیو سخنگو (OmniHuman)",
+      "params": {},
+      "notes": "مدل‌های لب‌خوانی audio-driven زبان‌مستقل‌اند — فارسی عالی کار می‌کند. صدا را جدا با tts بساز، اینجا فقط فایل صوتی بده."
+    },
+    "tts": {
+      "provider": "elevenlabs",
+      "endpoint": "eleven_v3",
+      "label": "گفتار فارسی طبیعی (ElevenLabs v3)",
+      "params": { "stability": 0.5, "similarity_boost": 0.8 },
+      "notes": "هشدار مهم: فقط مدل v3 فارسی دارد — Multilingual v2 و Flash فارسی را پشتیبانی نمی‌کنند."
+    },
+    "upscale": {
+      "provider": "fal",
+      "endpoint": "fal-ai/clarity-upscaler",
+      "label": "افزایش کیفیت و جزئیات",
+      "params": { "upscale_factor": 2 },
+      "notes": "برای ترمیم چهره: fal-ai/codeformer — برای ویدیو: SeedVR2"
+    },
+    "train-lora": {
+      "provider": "fal",
+      "endpoint": "fal-ai/flux-lora-fast-training",
+      "label": "آموزش هویت شخص (یک بار برای هر نفر، ~۲۰ دقیقه)",
+      "params": { "steps": 1000, "create_masks": true },
+      "notes": "ارتقا: fal-ai/flux-2-trainer (کیفیت بالاتر، ~۶-۸ دلار). ۱۰-۲۰ عکس متنوع لازم دارد — نصفش تمام‌قد تا فرم بدن هم یاد گرفته شود."
+    }
+  }
+}

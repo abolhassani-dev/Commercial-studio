@@ -1,0 +1,23 @@
+{
+  "_comment": "کتابخانه صحنه‌ها — label_fa برای نمایش در فرم، prompt برای ساخت پرامپت انگلیسی. هر آیتم جدید را با همین قالب اضافه کن.",
+  "items": [
+    { "id": "studio-white", "label_fa": "استودیو سفید (سیکلوراما)", "prompt": "professional photography studio with seamless white cyclorama background, clean minimal space" },
+    { "id": "studio-dark", "label_fa": "استودیو تیره لوکس", "prompt": "dark moody photography studio, black backdrop, subtle haze in the air, premium commercial set" },
+    { "id": "showroom", "label_fa": "نمایشگاه / شوروم مدرن", "prompt": "modern glass showroom with polished concrete floor, floor-to-ceiling windows, minimalist retail displays" },
+    { "id": "garage", "label_fa": "گاراژ صنعتی", "prompt": "industrial garage workshop, raw concrete walls, tool cabinets, dramatic atmosphere, motor oil and metal textures" },
+    { "id": "street-day", "label_fa": "خیابان شهری (روز)", "prompt": "vibrant city street in daylight, urban architecture, shallow depth of field on background pedestrians" },
+    { "id": "city-night", "label_fa": "شهر در شب / نئون", "prompt": "city street at night, neon signs reflecting on wet asphalt, cinematic urban nightscape" },
+    { "id": "luxury-home", "label_fa": "خانه لوکس", "prompt": "luxurious modern villa interior, designer furniture, marble surfaces, warm ambient lighting, floor-to-ceiling windows" },
+    { "id": "mountain-road", "label_fa": "جاده کوهستانی", "prompt": "winding mountain road at golden hour, dramatic peaks in background, epic landscape" },
+    { "id": "desert-road", "label_fa": "جاده کویری", "prompt": "empty desert highway, heat haze on horizon, golden sand dunes, cinematic wide landscape" },
+    { "id": "beach-sunset", "label_fa": "ساحل هنگام غروب", "prompt": "sandy beach at sunset, gentle waves, warm golden reflections on wet sand" },
+    { "id": "cafe", "label_fa": "کافه دنج", "prompt": "cozy specialty coffee shop interior, warm wood tones, soft window light, lifestyle atmosphere" },
+    { "id": "rooftop", "label_fa": "روف‌تاپ با منظره شهر", "prompt": "rooftop terrace overlooking city skyline at dusk, string lights, upscale lounge atmosphere" },
+    { "id": "boutique", "label_fa": "بوتیک / فروشگاه شیک", "prompt": "elegant fashion boutique interior, curated clothing racks, soft spotlights, premium retail design" },
+    { "id": "gym", "label_fa": "باشگاه ورزشی", "prompt": "modern fitness gym, dramatic directional lighting, dark tones with equipment highlights" },
+    { "id": "kitchen", "label_fa": "آشپزخانه مدرن", "prompt": "bright modern kitchen with marble island, morning window light, lifestyle setting" },
+    { "id": "office", "label_fa": "دفتر کار مدرن", "prompt": "contemporary office space, glass partitions, natural daylight, professional business atmosphere" },
+    { "id": "bazaar", "label_fa": "بازار سنتی ایرانی", "prompt": "traditional Persian bazaar, vaulted brick architecture, shafts of light from ceiling openings, rich warm atmosphere" },
+    { "id": "garden-persian", "label_fa": "باغ ایرانی", "prompt": "classical Persian garden with symmetrical water channels, cypress trees, turquoise tilework, soft afternoon light" }
+  ]
+}

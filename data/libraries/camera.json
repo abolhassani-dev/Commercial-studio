@@ -1,0 +1,27 @@
+{
+  "_comment": "کتابخانه دوربین — shots برای عکس، moves برای ویدیو",
+  "shots": [
+    { "id": "closeup", "label_fa": "کلوزآپ", "prompt": "close-up shot, 85mm lens, f/1.8, shallow depth of field" },
+    { "id": "extreme-closeup", "label_fa": "کلوزآپ خیلی نزدیک / ماکرو", "prompt": "extreme close-up macro shot, 100mm macro lens, intricate surface detail" },
+    { "id": "medium", "label_fa": "نمای متوسط", "prompt": "medium shot, 50mm lens, f/2.8, subject from waist up" },
+    { "id": "full-body", "label_fa": "تمام‌قد", "prompt": "full body shot, 35mm lens, f/4, entire figure visible with environment" },
+    { "id": "wide", "label_fa": "نمای باز / وسیع", "prompt": "wide establishing shot, 24mm lens, expansive composition" },
+    { "id": "low-angle", "label_fa": "زاویه پایین (قهرمانانه)", "prompt": "dramatic low-angle shot looking up, heroic powerful perspective" },
+    { "id": "high-angle", "label_fa": "زاویه بالا", "prompt": "high-angle shot looking down, elegant overview composition" },
+    { "id": "top-down", "label_fa": "عمود از بالا (فلت‌لی)", "prompt": "top-down flat lay shot, perfectly perpendicular overhead view" },
+    { "id": "dutch", "label_fa": "زاویه کج (داچ)", "prompt": "dutch angle tilted composition, dynamic energetic framing" },
+    { "id": "three-quarter", "label_fa": "سه‌رخ محصول", "prompt": "three-quarter product view, 60mm lens, showing front and side simultaneously" }
+  ],
+  "moves": [
+    { "id": "static", "label_fa": "ثابت (سه‌پایه)", "prompt": "locked-off static tripod shot" },
+    { "id": "slow-push", "label_fa": "حرکت آرام به جلو", "prompt": "slow cinematic push-in dolly move toward the subject" },
+    { "id": "pull-back", "label_fa": "عقب‌کشی برای نمایش صحنه", "prompt": "smooth pull-back dolly move revealing the full scene" },
+    { "id": "orbit", "label_fa": "چرخش دور سوژه (اوربیت)", "prompt": "smooth 180-degree orbit around the subject" },
+    { "id": "slider", "label_fa": "اسلایدر افقی", "prompt": "lateral slider move, smooth horizontal tracking" },
+    { "id": "tracking", "label_fa": "تعقیب سوژه (تراکینگ)", "prompt": "tracking shot following the moving subject, gimbal-stabilized" },
+    { "id": "crane-up", "label_fa": "کرین رو به بالا", "prompt": "crane shot rising upward, revealing scene from above" },
+    { "id": "fpv", "label_fa": "پهپاد سرعتی (FPV)", "prompt": "dynamic FPV drone shot, fast fluid motion through the scene" },
+    { "id": "handheld", "label_fa": "دوربین روی دست (حس UGC)", "prompt": "natural handheld camera movement, authentic vlog-style micro shake" },
+    { "id": "rack-focus", "label_fa": "تغییر فوکوس (رک‌فوکس)", "prompt": "rack focus transition shifting focus between foreground and subject" }
+  ]
+}

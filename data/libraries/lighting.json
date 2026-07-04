@@ -1,0 +1,15 @@
+{
+  "_comment": "کتابخانه نورپردازی",
+  "items": [
+    { "id": "studio-softbox", "label_fa": "نور استودیویی نرم (سافت‌باکس)", "prompt": "professional three-point studio lighting with large softboxes, soft even illumination, gentle shadows" },
+    { "id": "golden-hour", "label_fa": "گلدن‌آور (طلایی غروب)", "prompt": "golden hour sunlight, warm low-angle light, long soft shadows, glowing rim light" },
+    { "id": "cinematic-moody", "label_fa": "سینمایی تیره و دراماتیک", "prompt": "cinematic low-key lighting, strong contrast, dramatic shadows, volumetric haze, film-grade color" },
+    { "id": "neon", "label_fa": "نئون شبانه", "prompt": "neon lighting in cyan and magenta, colored rim lights, reflective highlights, night urban glow" },
+    { "id": "natural-window", "label_fa": "نور طبیعی پنجره", "prompt": "soft natural window light, gentle falloff, airy and authentic daylight feel" },
+    { "id": "luxury-warm", "label_fa": "نور لوکس گرم", "prompt": "warm luxurious ambient lighting, golden accents, soft glow on premium surfaces" },
+    { "id": "hard-flash", "label_fa": "فلش مستقیم (سبک مجله‌ای)", "prompt": "direct on-camera flash look, hard shadows, high-fashion editorial flash photography style" },
+    { "id": "overcast", "label_fa": "ابری یکنواخت", "prompt": "overcast diffused daylight, shadowless soft illumination, true-to-life colors" },
+    { "id": "rim-dramatic", "label_fa": "نور خطی پشت سوژه (ریم‌لایت)", "prompt": "strong rim lighting from behind, silhouette edge glow, dark background separation" },
+    { "id": "product-gradient", "label_fa": "نور گرادیانی محصول", "prompt": "controlled gradient lighting sweeping across product surfaces, specular highlights, commercial product lighting" }
+  ]
+}

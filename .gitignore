@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# داده‌های شخصی کاربر (عکس افراد، محصولات، خروجی‌ها) — هرگز در گیت ذخیره نشود
+data/store/
+public/uploads/
