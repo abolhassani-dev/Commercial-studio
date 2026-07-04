@@ -87,13 +87,23 @@ export async function getFalResult(responseUrl: string): Promise<unknown> {
   return res.json();
 }
 
-/** آپلود فایل محلی به فضای ذخیره fal تا مدل‌ها به آن URL دسترسی داشته باشند */
+const EXT_BY_TYPE: Record<string, string> = {
+  'application/zip': 'zip',
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/webp': 'webp',
+  'audio/mpeg': 'mp3',
+};
+
+/** آپلود فایل محلی به فضای ذخیره fal تا مدل‌ها به آن URL دسترسی داشته باشند
+ *  نکته مهم: file_name باید پسوند درست داشته باشد وگرنه fal فرمت (مثلاً zip) را نمی‌شناسد */
 export async function uploadToFal(buffer: Buffer, contentType: string): Promise<string> {
   const key = falKey();
+  const ext = EXT_BY_TYPE[contentType] ?? 'bin';
   const init = await fetch('https://rest.alpha.fal.ai/storage/upload/initiate', {
     method: 'POST',
     headers: { Authorization: `Key ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content_type: contentType, file_name: `upload-${Date.now()}` }),
+    body: JSON.stringify({ content_type: contentType, file_name: `upload-${Date.now()}.${ext}` }),
   });
   if (!init.ok) throw new Error(`آپلود به fal شکست خورد: ${await init.text()}`);
   const { upload_url, file_url } = (await init.json()) as { upload_url: string; file_url: string };
