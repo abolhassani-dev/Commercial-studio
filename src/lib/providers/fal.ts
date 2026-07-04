@@ -54,6 +54,39 @@ export async function callFal(
   throw new Error('زمان انتظار تولید تمام شد (timeout)');
 }
 
+/** ثبت درخواست در صف fal بدون انتظار — برای کارهای طولانی مثل آموزش LoRA */
+export async function submitFal(
+  endpoint: string,
+  input: Record<string, unknown>,
+): Promise<{ request_id: string; status_url: string; response_url: string }> {
+  const key = falKey();
+  const submit = await fetch(`${FAL_QUEUE}/${endpoint}`, {
+    method: 'POST',
+    headers: { Authorization: `Key ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  if (!submit.ok) throw new Error(`fal.ai خطا داد (${submit.status}): ${await submit.text()}`);
+  return submit.json();
+}
+
+/** بررسی وضعیت یک درخواست fal — بدون انتظار */
+export async function checkFal(
+  statusUrl: string,
+): Promise<{ status: string; error?: unknown }> {
+  const key = falKey();
+  const st = await fetch(statusUrl, { headers: { Authorization: `Key ${key}` } });
+  if (!st.ok) throw new Error(`بررسی وضعیت fal ناموفق (${st.status})`);
+  return st.json();
+}
+
+/** گرفتن نتیجه نهایی یک درخواست تکمیل‌شده fal */
+export async function getFalResult(responseUrl: string): Promise<unknown> {
+  const key = falKey();
+  const res = await fetch(responseUrl, { headers: { Authorization: `Key ${key}` } });
+  if (!res.ok) throw new Error(`گرفتن نتیجه fal ناموفق (${res.status})`);
+  return res.json();
+}
+
 /** آپلود فایل محلی به فضای ذخیره fal تا مدل‌ها به آن URL دسترسی داشته باشند */
 export async function uploadToFal(buffer: Buffer, contentType: string): Promise<string> {
   const key = falKey();

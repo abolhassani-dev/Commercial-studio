@@ -13,6 +13,11 @@ export interface Identity {
   loraUrl?: string;
   triggerWord?: string; // کلمه فعال‌ساز LoRA
   voiceId?: string; // شناسه صدای کلون‌شده در ElevenLabs
+  // وضعیت آموزش LoRA
+  trainingStatus?: 'idle' | 'training' | 'done' | 'failed';
+  trainingStatusUrl?: string;
+  trainingResponseUrl?: string;
+  trainingError?: string;
   notes?: string;
   createdAt: string;
 }

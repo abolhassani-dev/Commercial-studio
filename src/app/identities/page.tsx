@@ -18,9 +18,40 @@ export default function IdentitiesPage() {
   const [items, setItems] = useState<Identity[]>([]);
   const [form, setForm] = useState<typeof EMPTY>(EMPTY);
   const [msg, setMsg] = useState('');
+  const [training, setTraining] = useState<Record<string, string>>({});
 
   const load = () => fetch('/api/db/identities').then((r) => r.json()).then(setItems);
   useEffect(() => { load(); }, []);
+
+  // بررسی خودکار وضعیت آموزش هر ۳۰ ثانیه برای افرادی که در حال آموزش‌اند
+  useEffect(() => {
+    const inProgress = items.filter((i) => i.trainingStatus === 'training');
+    if (inProgress.length === 0) return;
+    const timer = setInterval(async () => {
+      for (const p of inProgress) {
+        const res = await fetch(`/api/train-lora?identityId=${p.id}`);
+        const d = await res.json();
+        if (d.status === 'done' || d.status === 'failed') load();
+      }
+    }, 30000);
+    return () => clearInterval(timer);
+  }, [items]);
+
+  async function startTraining(id: string) {
+    setTraining((t) => ({ ...t, [id]: 'شروع آموزش…' }));
+    const res = await fetch('/api/train-lora', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identityId: id }),
+    });
+    const d = await res.json();
+    setTraining((t) => ({ ...t, [id]: '' }));
+    if (!d.ok) {
+      alert(d.error ?? 'شروع آموزش ناموفق بود');
+      return;
+    }
+    load();
+  }
 
   async function save() {
     if (!form.name || !form.lockedDescription) {
@@ -110,31 +141,67 @@ export default function IdentitiesPage() {
       </div>
 
       <h2>افراد ثبت‌شده ({items.length})</h2>
-      {items.map((it) => (
-        <div className="item-row" key={it.id}>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            {it.referencePhotos[0] && <img src={it.referencePhotos[0]} className="thumb" alt="" />}
-            <div>
-              <strong>{it.name}</strong>
-              <div style={{ fontSize: 12, color: 'var(--muted)' }}>
-                {it.referencePhotos.length} عکس مرجع
-                {it.loraUrl && <span className="pill ok" style={{ marginInlineStart: 8 }}>LoRA ✓</span>}
-                {it.voiceId && <span className="pill ok" style={{ marginInlineStart: 4 }}>صدا ✓</span>}
+      {items.map((it) => {
+        const st = it.trainingStatus;
+        return (
+          <div className="item-row" key={it.id} style={{ flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              {it.referencePhotos[0] && <img src={it.referencePhotos[0]} className="thumb" alt="" />}
+              <div>
+                <strong>{it.name}</strong>
+                <div style={{ fontSize: 12, color: 'var(--muted)' }}>
+                  {it.referencePhotos.length} عکس مرجع
+                  {st === 'done' && <span className="pill ok" style={{ marginInlineStart: 8 }}>هویت آموزش‌دیده ✓</span>}
+                  {st === 'training' && <span className="pill warn" style={{ marginInlineStart: 8 }}>⏳ در حال آموزش (~۲۰ دقیقه)</span>}
+                  {st === 'failed' && <span className="pill fail" style={{ marginInlineStart: 8 }}>آموزش ناموفق</span>}
+                  {it.voiceId && <span className="pill ok" style={{ marginInlineStart: 4 }}>صدا ✓</span>}
+                </div>
               </div>
             </div>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              {(st === 'idle' || st === undefined || st === 'failed') && (
+                <button
+                  className="secondary"
+                  style={{ fontSize: 13, padding: '7px 14px' }}
+                  disabled={!!training[it.id]}
+                  onClick={() => startTraining(it.id)}
+                  title="یک بار روی عکس‌های این شخص آموزش می‌بیند تا چهره و بدن در همه تولیدها ثابت بماند"
+                >
+                  {training[it.id] || (st === 'failed' ? '🔁 تلاش دوباره آموزش' : '🧠 آموزش هویت (LoRA)')}
+                </button>
+              )}
+              {st === 'training' && (
+                <button className="secondary" style={{ fontSize: 13 }} disabled>
+                  در حال آموزش…
+                </button>
+              )}
+              <button
+                className="danger"
+                onClick={async () => {
+                  await fetch(`/api/db/identities?id=${it.id}`, { method: 'DELETE' });
+                  load();
+                }}
+              >
+                حذف
+              </button>
+            </div>
+            {st === 'failed' && it.trainingError && (
+              <div className="msg err" style={{ width: '100%', fontSize: 12 }}>{it.trainingError}</div>
+            )}
           </div>
-          <button
-            className="danger"
-            onClick={async () => {
-              await fetch(`/api/db/identities?id=${it.id}`, { method: 'DELETE' });
-              load();
-            }}
-          >
-            حذف
-          </button>
-        </div>
-      ))}
+        );
+      })}
       {items.length === 0 && <p className="sub">هنوز شخصی ثبت نشده.</p>}
+
+      <div className="card" style={{ marginTop: 8, background: 'var(--panel2)' }}>
+        <strong>🧠 آموزش هویت (LoRA) یعنی چه؟</strong>
+        <p className="sub" style={{ marginTop: 6 }}>
+          با یک بار زدن دکمه «آموزش هویت»، سیستم حدود ۲۰ دقیقه روی عکس‌های آن شخص آموزش می‌بیند و
+          چهره و بدنش را «قفل» می‌کند. بعد از آن، در «ساخت محتوا» با انتخاب همان شخص، چهره و اندام او در
+          صدها عکس دقیقاً ثابت می‌ماند — قوی‌ترین حالت حفظ هویت. یک‌بار برای هر نفر کافی است (~۲ تا ۸ سنت).
+          می‌توانی صفحه را ببندی؛ آموزش روی سرور ادامه پیدا می‌کند.
+        </p>
+      </div>
     </div>
   );
 }
