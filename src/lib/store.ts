@@ -13,12 +13,17 @@ export const COLLECTIONS = ['identities', 'products', 'brands', 'outputs'] as co
 export type CollectionName = (typeof COLLECTIONS)[number];
 
 // ── حالت Blob (ابری) ──
+// نکته مهم: Blob فایل‌ها را روی CDN کش می‌کند. چون این‌ها یک دیتابیس متغیرند،
+// باید cacheControlMaxAge=0 باشد و موقع خواندن هم کش را دور بزنیم؛ وگرنه
+// به‌روزرسانی‌ها دیده نمی‌شوند.
 async function blobRead<T>(collection: CollectionName): Promise<T[]> {
   const { list } = await import('@vercel/blob');
   const { blobs } = await list({ prefix: `store/${collection}.json` });
   const blob = blobs.find((b) => b.pathname === `store/${collection}.json`);
   if (!blob) return [];
-  const res = await fetch(blob.url, { cache: 'no-store' });
+  // دور زدن کش CDN با پارامتر ضدکش + no-store
+  const bust = `?ts=${Date.now()}`;
+  const res = await fetch(blob.url + bust, { cache: 'no-store' });
   if (!res.ok) return [];
   return (await res.json()) as T[];
 }
@@ -30,6 +35,7 @@ async function blobWrite<T>(collection: CollectionName, items: T[]) {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'application/json',
+    cacheControlMaxAge: 0, // این دیتابیس است — نباید کش شود
   });
 }
 
