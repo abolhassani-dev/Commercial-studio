@@ -4,7 +4,7 @@ import { generate } from '@/lib/modelRouter';
 import { addItem, newId, updateItem } from '@/lib/store';
 import type { CreationRequest, OutputRecord, PromptPackage } from '@/lib/types';
 
-export const maxDuration = 600; // تولید ویدیو ممکن است چند دقیقه طول بکشد
+export const maxDuration = 300; // سقف پلن رایگان Vercel؛ تولید ویدیو ممکن است چند دقیقه طول بکشد
 
 export async function POST(req: NextRequest) {
   const { promptPackage, request, title } = (await req.json()) as {
