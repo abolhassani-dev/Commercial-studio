@@ -6,6 +6,7 @@ interface LibItem { id: string; label_fa: string; [k: string]: unknown }
 interface Libraries {
   scenes: LibItem[]; lighting: LibItem[]; cameraShots: LibItem[]; cameraMoves: LibItem[];
   styles: LibItem[]; platforms: (LibItem & { type: string; aspect_ratio: string })[];
+  imageEngines: LibItem[];
 }
 
 const OUTPUT_TYPES = [
@@ -35,6 +36,7 @@ export default function CreatePage() {
     adTone: 'صمیمی',
     cta: '',
     extraNotes: '',
+    imageEngine: 'auto',
   });
 
   const [pkg, setPkg] = useState<PromptPackage | null>(null);
@@ -161,6 +163,12 @@ export default function CreatePage() {
           {isVideo && sel('حرکت دوربین', req.cameraMoveId, lib.cameraMoves, (v) => setReq({ ...req, cameraMoveId: v }))}
           {sel('پلتفرم خروجی', req.platformId, platforms, (v) => setReq({ ...req, platformId: v }))}
         </div>
+
+        {!isVideo && lib.imageEngines?.length > 0 && (
+          <div className="grid cols-3">
+            {sel('موتور تصویر', req.imageEngine, lib.imageEngines, (v) => setReq({ ...req, imageEngine: v }))}
+          </div>
+        )}
 
         {isVideo && (
           <div className="grid cols-3">

@@ -6,6 +6,35 @@
     "tts": "جایگزین: MiniMax Speech 2.5/2.6 HD روی fal — فارسی + کلون صدا با ۱۰ ثانیه نمونه، ~یک‌سوم قیمت ElevenLabs",
     "lipsync": "جایگزین‌ها: fal-ai/sync-lipsync/v2 (دوبله ویدیو موجود)، Kling Avatar v2 (ارزان‌تر)، LatentSync (تقریباً مجانی برای حجم بالا)"
   },
+  "imageEngines": {
+    "_comment": "موتورهای تصویر قابل انتخاب در فرم «ساخت محتوا». auto = انتخاب هوشمند سیستم بر اساس وظیفه.",
+    "auto": { "label_fa": "خودکار (پیشنهاد سیستم)", "provider": "fal", "endpoint": "" },
+    "flux-pro": {
+      "label_fa": "FLUX Pro — واقع‌گرایی بالا",
+      "provider": "fal",
+      "endpoint": "fal-ai/flux-pro/v1.1-ultra",
+      "params": { "num_images": 1, "output_format": "jpeg", "safety_tolerance": "2" }
+    },
+    "nano-banana": {
+      "label_fa": "Nano Banana Pro — درک پرامپت و حفظ هویت",
+      "provider": "fal",
+      "endpoint": "fal-ai/nano-banana-pro",
+      "params": { "num_images": 1, "output_format": "jpeg" }
+    },
+    "gpt-image": {
+      "label_fa": "GPT Image (OpenAI) — بهترین برای متن و لوگوی خوانا",
+      "provider": "openai",
+      "endpoint": "gpt-image-1",
+      "editEndpoint": "gpt-image-1",
+      "notes": "خروجی base64 می‌دهد؛ به فضای ذخیره آپلود می‌شود. برای پکیجینگ/بنر با متن دقیق عالی است."
+    },
+    "gpt-image-2": {
+      "label_fa": "GPT Image 2 (OpenAI) — جدیدترین، کیفیت بالاتر",
+      "provider": "openai",
+      "endpoint": "gpt-image-2",
+      "editEndpoint": "gpt-image-2"
+    }
+  },
   "tasks": {
     "image": {
       "provider": "fal",

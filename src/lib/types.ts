@@ -62,6 +62,7 @@ export interface CreationRequest {
   adTone?: string; // لحن: صمیمی، لوکس، هیجانی، اعتمادساز
   cta?: string; // فراخوان اقدام
   extraNotes?: string; // توضیح آزاد کاربر (فارسی یا انگلیسی)
+  imageEngine?: string; // موتور تصویر انتخابی (auto | flux-pro | nano-banana | gpt-image | ...)
 }
 
 /** پرامپت ساختاریافته JSON — خروجی Prompt Builder */

@@ -142,6 +142,7 @@ export function buildPromptPackage(ctx: BuilderContext): PromptPackage {
         aspect_ratio: aspectRatio,
         duration: durationS,
         num_reference_images: ctx.identity?.referencePhotos?.length ?? 0,
+        imageEngine: request.imageEngine ?? 'auto',
       },
     },
   };
